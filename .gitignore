@@ -1,0 +1,21 @@
+# Roblox Studio files
+/*.rbxlx
+/*.rbxlx.lock
+/*.rbxl
+/*.rbxl.lock
+/*.rbxm
+/*.rbxmx
+
+# rojo
+/sourcemap.json
+
+# pesde
+/*_packages
+/.pesde
+
+# typedefs
+globalTypes.d.lua
+
+# tar files
+*.tar
+*.tar.gz

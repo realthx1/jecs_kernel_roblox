@@ -1,0 +1,77 @@
+name: CD
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v5
+
+      - name: Install Pesde
+        uses: lumin-org/setup-pesde@v0.4.1
+        with:
+          token: ${{ secrets.PESDE_AUTH_TOKEN }}
+
+      - name: Install Pesde Dependencies
+        run: pesde install --locked
+
+      - name: Build
+        run: rojo build --output build.rbxm default.project.json
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: build
+          path: build.rbxm
+
+  release:
+    name: Release
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v5
+
+      - name: Download Build
+        uses: actions/download-artifact@v6
+        with:
+          name: build
+          path: build
+
+      - name: Rename Build
+        run: mv build/build.rbxm jecs_kernel_roblox.rbxm
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            jecs_kernel_roblox.rbxm
+
+  publish-pesde:
+    name: Publish-Pesde
+    needs: [release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v5
+
+      - name: Install Pesde
+        uses: lumin-org/setup-pesde@v0.4.1
+        with:
+          token: ${{ secrets.PESDE_AUTH_TOKEN }}
+
+      - name: Install Pesde Dependencies
+        run: pesde install --locked
+
+      - name: Pesde Login
+        run: pesde auth login --token ${{ secrets.PESDE_AUTH_TOKEN }}
+
+      - name: Publish
+        run: pesde publish -y

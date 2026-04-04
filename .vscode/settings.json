@@ -1,0 +1,9 @@
+{
+  "luau-lsp.sourcemap.generatorCommand": "rojo sourcemap -o sourcemap.json",
+  "luau-lsp.fflags.enableNewSolver": true,
+  "luau-lsp.completion.imports.stringRequires.enabled": true,
+  "luau-lsp.completion.imports.requireStyle": "alwaysRelative",
+  "luau-lsp.ignoreGlobs": ["*_packages/**", ".pesde/**"],
+  "luau-lsp.completion.imports.ignoreGlobs": ["*_packages/.pesde/**"],
+  "luau-lsp.sourcemap.rojoProjectFile": "test.project.json"
+}

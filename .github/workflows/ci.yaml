@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+concurrency:
+  # Ensure this workflow does not run twice at the same time
+  group: ${{ github.workflow }}
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v5
+
+      - name: Install Pesde
+        uses: lumin-org/setup-pesde@v0.4.1
+        with:
+          token: ${{ secrets.PESDE_AUTH_TOKEN }}
+
+      - name: Install Pesde Dependencies
+        run: pesde install --locked
+
+      - name: Analyze
+        run: pesde run analyze
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v5
+
+      - name: Install Pesde
+        uses: lumin-org/setup-pesde@v0.4.1
+        with:
+          token: ${{ secrets.PESDE_AUTH_TOKEN }}
+
+      - name: Install Pesde Dependencies
+        run: pesde install --locked
+
+      - name: Lint
+        run: |
+          selene src/
+
+  style:
+    name: Styling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v5
+
+      - name: Install Pesde
+        uses: lumin-org/setup-pesde@v0.4.1
+        with:
+          token: ${{ secrets.PESDE_AUTH_TOKEN }}
+
+      - name: Install Pesde Dependencies
+        run: pesde install --locked
+
+      - name: Styling
+        run: |
+          stylua src/ --check --verify
