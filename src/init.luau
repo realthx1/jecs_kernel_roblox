@@ -47,7 +47,7 @@ local function default_app_runner(app: krnl.App): (boolean, string)
 
 		local steps: number
 		steps, frame, accumulator = fixedstep_mod.fixed_timestep(dt, frame, accumulator)
-		for i = 1, steps do
+		for _ = 1, steps do
 			for _, schedule in schedules_mod.fixed_pipeline do
 				schedule:run(app.world)
 			end
