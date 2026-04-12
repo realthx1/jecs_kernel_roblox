@@ -15,25 +15,32 @@ local schedules_plugin_mod = require("@self/schedules_plugin")
 ]=]
 local mod = {}
 
+local function run_schedule(app: krnl.App, schedule: krnl.Schedule, name: string)
+	local debug_info = krnl.flags.debug_info
+	if debug_info then debug.profilebegin(name) end
+	schedule:run(app.world)
+	if debug_info then debug.profileend() end
+end
+
 local function default_app_runner(app: krnl.App): (boolean, string)
-	for _, schedule in schedules_mod.startup_pipeline do
-		schedule:run(app.world)
-	end
+	run_schedule(app, schedules_mod.startup_pipeline[1], "schedule PreStartup")
+	run_schedule(app, schedules_mod.startup_pipeline[2], "schedule Startup")
+	run_schedule(app, schedules_mod.startup_pipeline[3], "schedule PostStartup")
 
 	local last_fixed_t, frame, accumulator = 0, 0, 0
 
 	runservice.PreAnimation:Connect(function()
-		schedules_mod.pre_animation_schedule:run(app.world)
+		run_schedule(app, schedules_mod.pre_animation_schedule, "schedule PreAnimation")
 	end)
 	runservice.PreSimulation:Connect(function()
-		schedules_mod.pre_simulation_schedule:run(app.world)
+		run_schedule(app, schedules_mod.pre_simulation_schedule, "schedule PreSimulation")
 	end)
 	runservice.PostSimulation:Connect(function()
-		schedules_mod.post_simulation_schedule:run(app.world)
+		run_schedule(app, schedules_mod.post_simulation_schedule, "schedule PostSimulation")
 	end)
 	if runservice:IsClient() then
 		runservice.PreRender:Connect(function()
-			schedules_mod.pre_render_schedule:run(app.world)
+			run_schedule(app, schedules_mod.pre_render_schedule, "schedule PreRender")
 		end)
 	end
 
@@ -42,20 +49,22 @@ local function default_app_runner(app: krnl.App): (boolean, string)
 		local dt = cur_t - last_fixed_t
 		last_fixed_t = cur_t
 
-		schedules_mod.update_pipeline[1]:run(app.world)
-		schedules_mod.update_pipeline[2]:run(app.world)
+		run_schedule(app, schedules_mod.update_pipeline[2], "schedule First")
+		run_schedule(app, schedules_mod.update_pipeline[2], "schedule PreUpdate")
 
 		local steps: number
 		steps, frame, accumulator = fixedstep_mod.fixed_timestep(dt, frame, accumulator)
 		for _ = 1, steps do
-			for _, schedule in schedules_mod.fixed_pipeline do
-				schedule:run(app.world)
-			end
+			run_schedule(app, schedules_mod.fixed_pipeline[1], "schedule FixedFirst")
+			run_schedule(app, schedules_mod.fixed_pipeline[2], "schedule FixedPreUpdate")
+			run_schedule(app, schedules_mod.fixed_pipeline[3], "schedule FixedUpdate")
+			run_schedule(app, schedules_mod.fixed_pipeline[4], "schedule FixedPostUpdate")
+			run_schedule(app, schedules_mod.fixed_pipeline[5], "schedule FixedLast")
 		end
 
-		schedules_mod.update_pipeline[3]:run(app.world)
-		schedules_mod.update_pipeline[4]:run(app.world)
-		schedules_mod.update_pipeline[5]:run(app.world)
+		run_schedule(app, schedules_mod.update_pipeline[3], "schedule Update")
+		run_schedule(app, schedules_mod.update_pipeline[4], "schedule PostUpdate")
+		run_schedule(app, schedules_mod.update_pipeline[5], "schedule Last")
 	end)
 
 	coroutine.yield()
