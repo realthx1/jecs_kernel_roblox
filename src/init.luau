@@ -3,9 +3,9 @@
 
 local runservice = game:GetService("RunService")
 
-local default_plugins_mod = require("@self/default_plugins")
 local krnl = require("./roblox_packages/jecs_kernel")
 
+local default_plugins_mod = require("@self/default_plugins")
 local schedules_mod = require("@self/schedules")
 local fixedstep_mod = require("@self/fixedstep")
 local schedules_plugin_mod = require("@self/schedules_plugin")

@@ -61,7 +61,7 @@ local schedule_map = table.freeze({
 		--- Runs on PostSimulation event.
 		PostSimulation = post_simulation_schedule,
 		--- Alias for Main's Update schedule.
-		HeartBeat = update_pipeline[3],
+		Heartbeat = update_pipeline[3],
 		--- Runs on PreRender. This schedule won't run on server!
 		PreRender = pre_render_schedule,
 	}),

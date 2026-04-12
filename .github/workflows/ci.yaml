@@ -17,6 +17,9 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v5
 
+      - name: Install Mise
+        uses: jdx/mise-action@v2
+
       - name: Install Pesde
         uses: lumin-org/setup-pesde@v0.4.1
         with:
@@ -35,6 +38,9 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v5
 
+      - name: Install Mise
+        uses: jdx/mise-action@v2
+
       - name: Install Pesde
         uses: lumin-org/setup-pesde@v0.4.1
         with:
@@ -45,7 +51,7 @@ jobs:
 
       - name: Lint
         run: |
-          selene src/
+          mise exec -- selene src/
 
   style:
     name: Styling
@@ -53,6 +59,9 @@ jobs:
     steps:
       - name: Checkout Project
         uses: actions/checkout@v5
+
+      - name: Install Mise
+        uses: jdx/mise-action@v2
 
       - name: Install Pesde
         uses: lumin-org/setup-pesde@v0.4.1
@@ -64,4 +73,4 @@ jobs:
 
       - name: Styling
         run: |
-          stylua src/ --check --verify
+          mise exec -- stylua src/ --check --verify

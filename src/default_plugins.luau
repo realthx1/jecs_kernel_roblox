@@ -10,7 +10,7 @@ local mod = {}
     Ordered list of added plugins:
     * SchedulesPlugin
 ]=]
-local default_plugins = krnl.app.new_plugin_group():add(schedules_plugin_mod.schedules_plugin)
+local default_plugins = krnl.new_plugin_group("DefaultPlugins"):add(schedules_plugin_mod.schedules_plugin)
 
 mod.default_plugins = default_plugins
 

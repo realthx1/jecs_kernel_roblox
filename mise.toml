@@ -1,0 +1,5 @@
+[tools]
+"github:JohnnyMorganz/luau-lsp" = "latest"
+"github:Kampfkarren/selene" = "latest"
+"github:rojo-rbx/rojo" = "latest"
+stylua = "latest"

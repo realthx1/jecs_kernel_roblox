@@ -12,6 +12,9 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v5
 
+      - name: Install Mise
+        uses: jdx/mise-action@v2
+
       - name: Install Pesde
         uses: lumin-org/setup-pesde@v0.4.1
         with:
@@ -21,7 +24,7 @@ jobs:
         run: pesde install --locked
 
       - name: Build
-        run: rojo build --output build.rbxm default.project.json
+        run: mise exec -- rojo build --output build.rbxm default.project.json
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v5

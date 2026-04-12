@@ -13,7 +13,8 @@ local function run(prog: string, args: { string }, env: { [string]: string }?): 
 	return process.exec(prog, args, { stdio = "forward", env = env })
 end
 
-local srcmapRes: process.ExecResult = run("rojo", { "sourcemap", "--output", "sourcemap.json" })
+local srcmapRes: process.ExecResult =
+	run("mise", { "exec", "--", "rojo", "sourcemap", "test.project.json", "--output", "sourcemap.json" })
 if not srcmapRes.ok then
 	stdio.ewrite(`rojo encountered an error (code {srcmapRes.code})\n{srcmapRes.stdout}\n{srcmapRes.stderr}\n`)
 	process.exit(1)
@@ -65,7 +66,7 @@ for flag: string, value: string in flags do
 end
 table.insert(analyzeArgs, "src/")
 
-local analyzeRes: process.ExecResult = run("luau_lsp", analyzeArgs)
+local analyzeRes: process.ExecResult = run("mise", { "exec", "--", "luau-lsp", unpack(analyzeArgs) })
 if not analyzeRes.ok then
 	stdio.ewrite(`luau-lsp encountered an error (code {analyzeRes.code})\n{analyzeRes.stdout}\n{analyzeRes.stderr}\n`)
 	process.exit(1)

@@ -1,9 +1,9 @@
-local krnl = require(script.Parent.Parent.roblox_packages.jecs_kernel)
-local krnl_roblox = require(script.Parent.Parent.jecs_kernel_roblox)
-local jecs = require(script.Parent.Parent.roblox_packages.jecs)
+local krnl = require("../roblox_packages/jecs_kernel")
+local jecs = require("../roblox_packages/jecs")
+local krnl_roblox = require("../jecs_kernel_roblox")
 
 local schedules = krnl_roblox.schedules
-local sys = krnl.system.system_new
+local sys = krnl.sys
 
 local world = jecs.world()
 local human_tag = world:entity()
@@ -32,10 +32,9 @@ local human_death_sys = sys("Human Death")(function()
 	end
 end)
 
-krnl.app
-	.new_app()
-	:add_plugins(krnl_roblox.DefaultPlugins)
-	:add_systems(schedules.Startup.Startup, human_add_sys)
-	:add_systems(schedules.FixedMain.FixedUpdate, human_damage_sys)
-	:add_systems(schedules.Main.PostUpdate, human_death_sys)
+krnl.new_app()
+	:add_plugin_group(krnl_roblox.DefaultPlugins)
+	:add_systems(schedules.Startup.Startup, { human_add_sys })
+	:add_systems(schedules.FixedMain.FixedUpdate, { human_damage_sys })
+	:add_systems(schedules.Main.PostUpdate, { human_death_sys })
 	:run(krnl_roblox.runner)

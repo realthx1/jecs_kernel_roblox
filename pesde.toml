@@ -1,5 +1,5 @@
 name = "realthx1/jecs_kernel_roblox"
-version = "0.1.0"
+version = "0.2.0"
 description = "Collection of schedules and plugins for the jecs_kernel package and Roblox."
 authors = ["realthx1"]
 repository = "https://github.com/realthx1/jecs_kernel_roblox"
@@ -18,8 +18,8 @@ default = "https://github.com/pesde-pkg/index"
 default = "https://github.com/UpliftGames/wally-index"
 
 [dependencies]
-jecs = { wally = "ukendio/jecs", version = "^0.11.0" }
-jecs_kernel = { name = "realthx1/jecs_kernel", version = "^0.1.0" }
+jecs = { wally = "ukendio/jecs", version = "~0.11.0" }
+jecs_kernel = { name = "realthx1/jecs_kernel", version = "~0.2.0" }
 
 [scripts]
 analyze = ".lune/analyze.luau"
@@ -29,9 +29,6 @@ sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
 [dev_dependencies]
 scripts = { name = "pesde/scripts_rojo", version = "^0.2.0", target = "lune" }
 rojo = { name = "pesde/rojo", version = "^7.5.1", target = "lune" }
-selene = { name = "pesde/selene", version = "^0.30.1", target = "lune" }
-luau_lsp = { name = "pesde/luau_lsp", version = "^1.63.0", target = "lune" }
-stylua = { name = "pesde/stylua", version = "^2.3.1", target = "lune" }
 
 [engines]
 pesde = "^0.7.0"
