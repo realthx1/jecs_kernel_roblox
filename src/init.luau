@@ -17,8 +17,13 @@ local mod = {}
 
 local function run_schedule(app: krnl.App, schedule: krnl.Schedule, name: string)
 	local debug_info = krnl.flags.debug_info
+	local unsafe_execution = krnl.flags.error_boundaries
 	if debug_info then debug.profilebegin(name) end
-	schedule:run(app.world)
+	if unsafe_execution then
+		schedule:run(app.world)
+	else
+		pcall(schedule.run, schedule, app.world)
+	end
 	if debug_info then debug.profileend() end
 end
 

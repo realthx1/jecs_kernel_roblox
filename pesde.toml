@@ -1,5 +1,5 @@
 name = "realthx1/jecs_kernel_roblox"
-version = "0.2.1"
+version = "0.2.2"
 description = "Collection of schedules and plugins for the jecs_kernel package and Roblox."
 authors = ["realthx1"]
 repository = "https://github.com/realthx1/jecs_kernel_roblox"
