@@ -22,7 +22,9 @@ local function run_schedule(app: krnl.App, schedule: krnl.Schedule, name: string
 	if unsafe_execution then
 		schedule:run(app.world)
 	else
-		pcall(schedule.run, schedule, app.world)
+		xpcall(schedule.run, function(err: string)
+			warn(debug.traceback("An error was caught while running schedule'" .. name .. "'\n" .. err))
+		end, schedule, app.world)
 	end
 	if debug_info then debug.profileend() end
 end

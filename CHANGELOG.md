@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.2] - 2026-04-13
 
 ### Added
-- Schedule runs using pcall. This is enabled only if jecs_kernel's error_boundaries flag is set to true.
+- Schedule runs using xpcall. This is enabled only if jecs_kernel's error_boundaries flag is set to true.
 
 ## [0.2.1] - 2026-04-12
 
