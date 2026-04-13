@@ -10,7 +10,7 @@ local human_tag = world:entity()
 local health_component = world:component<<number>>()
 
 local human_add_sys = sys("Human Add")(function()
-	for i = 1, 10 do
+	for i = 1, 1000 do
 		local human_ent = world:entity()
 		world:add(human_ent, human_tag)
 		world:set(human_ent, health_component, math.random(10, 100))
@@ -26,7 +26,7 @@ end)
 local human_death_sys = sys("Human Death")(function()
 	for human_ent, health in world:query(health_component):with(human_tag) do
 		if health == 0 then
-			warn("Human", human_ent, "died!")
+			--warn("Human", human_ent, "died!")
 			world:delete(human_ent)
 		end
 	end
