@@ -2,31 +2,31 @@ local krnl = require("../roblox_packages/jecs_kernel")
 
 local mod = {}
 
-local pre_animation_schedule = krnl.schedule.new()
-local pre_simulation_schedule = krnl.schedule.new()
-local post_simulation_schedule = krnl.schedule.new()
-local pre_render_schedule = krnl.schedule.new()
+local pre_animation_schedule = krnl.schedule.new("PreAnimation")
+local pre_simulation_schedule = krnl.schedule.new("PreSimulation")
+local post_simulation_schedule = krnl.schedule.new("PostSimulation")
+local pre_render_schedule = krnl.schedule.new("PreRender")
 
 local update_pipeline: { krnl.Schedule } = {
-	krnl.schedule.new(),
-	krnl.schedule.new(),
-	krnl.schedule.new(),
-	krnl.schedule.new(),
-	krnl.schedule.new(),
+	krnl.schedule.new("First"),
+	krnl.schedule.new("PreUpdate"),
+	krnl.schedule.new("Update"),
+	krnl.schedule.new("PostUpdate"),
+	krnl.schedule.new("Last"),
 }
 
 local startup_pipeline: { krnl.Schedule } = {
-	krnl.schedule.new(),
-	krnl.schedule.new(),
-	krnl.schedule.new(),
+	krnl.schedule.new("PreStartup"),
+	krnl.schedule.new("Startup"),
+	krnl.schedule.new("PostStartup"),
 }
 
 local fixed_pipeline: { krnl.Schedule } = {
-	krnl.schedule.new(),
-	krnl.schedule.new(),
-	krnl.schedule.new(),
-	krnl.schedule.new(),
-	krnl.schedule.new(),
+	krnl.schedule.new("FixedFirst"),
+	krnl.schedule.new("FixedPreUpdate"),
+	krnl.schedule.new("FixedUpdate"),
+	krnl.schedule.new("FixedPostUpdate"),
+	krnl.schedule.new("FixedLast"),
 }
 
 --- Contains all schedules which are ran by the runner.

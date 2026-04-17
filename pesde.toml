@@ -1,5 +1,5 @@
 name = "realthx1/jecs_kernel_roblox"
-version = "0.2.3"
+version = "0.3.0"
 description = "Collection of schedules and plugins for the jecs_kernel package and Roblox."
 authors = ["realthx1"]
 repository = "https://github.com/realthx1/jecs_kernel_roblox"
@@ -19,7 +19,7 @@ default = "https://github.com/UpliftGames/wally-index"
 
 [dependencies]
 jecs = { wally = "ukendio/jecs", version = "~0.11.0" }
-jecs_kernel = { name = "realthx1/jecs_kernel", version = "~0.2.0" }
+jecs_kernel = { name = "realthx1/jecs_kernel", version = "~0.3.0" }
 
 [scripts]
 analyze = ".lune/analyze.luau"

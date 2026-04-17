@@ -3,7 +3,6 @@
 
 -- kindly "borrowed" from lockstep
 
--- TODO add a way to configure this at runtime
 local FIXED_DELTA = 1 / 64
 local MAX_DELTA = 1 / 4
 
