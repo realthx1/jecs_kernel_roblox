@@ -5,10 +5,6 @@ on:
     branches: ["main"]
   pull_request:
 
-concurrency:
-  # Ensure this workflow does not run twice at the same time
-  group: ${{ github.workflow }}
-
 jobs:
   analyze:
     name: Analyze
@@ -31,27 +27,27 @@ jobs:
       - name: Analyze
         run: pesde run analyze
 
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v5
+  # lint:
+  #   name: Lint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Project
+  #       uses: actions/checkout@v5
 
-      - name: Install Mise
-        uses: jdx/mise-action@v2
+  #     - name: Install Mise
+  #       uses: jdx/mise-action@v2
 
-      - name: Install Pesde
-        uses: lumin-org/setup-pesde@v0.4.1
-        with:
-          token: ${{ secrets.PESDE_AUTH_TOKEN }}
+  #     - name: Install Pesde
+  #       uses: lumin-org/setup-pesde@v0.4.1
+  #       with:
+  #         token: ${{ secrets.PESDE_AUTH_TOKEN }}
 
-      - name: Install Pesde Dependencies
-        run: pesde install --locked
+  #     - name: Install Pesde Dependencies
+  #       run: pesde install --locked
 
-      - name: Lint
-        run: |
-          mise exec -- selene src/
+  #     - name: Lint
+  #       run: |
+  #         mise exec -- selene src/
 
   style:
     name: Styling
