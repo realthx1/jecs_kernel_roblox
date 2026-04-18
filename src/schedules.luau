@@ -29,7 +29,37 @@ local fixed_pipeline: { krnl.Schedule } = {
 	krnl.schedule.new("FixedLast"),
 }
 
---- Contains all schedules which are ran by the runner.
+--[=[
+    Contains all schedules which are ran by the default runner and added by SchedulesPlugin.
+
+    Startup schedules are ran once at app run.
+    - PreStartup
+    - Startup
+    - PostStartup
+
+    Update schedules are ran at every RunService heartbeat.
+    - First
+    - PreUpdate
+    - Update
+    - PostUpdate
+    - Last
+
+    Additionally, between the PreUpdate and Update schedule a set of fixed timestep schedules are ran 0 or more times.
+    - FixedFirst
+    - FixedPreUpdate
+    - FixedUpdate
+    - FixedPostUpdate
+    - FixedLast
+
+    Each RunService event has its own schedule. Heartbeat event schedule is an alias to the Update schedule.
+    - PreAnimation
+    - PreSimulation
+    - PostSimulation
+    - Heartbeat
+    - PreRender (only runs on client)
+
+    Refer to [/examples/quickstart.luau](./examples/quickstart.luau) for a practical example.
+]=]
 local schedule_map = table.freeze({
 	--- Contains all schedules which are sequentially ran on HeartBeat.
 	Main = table.freeze({

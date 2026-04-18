@@ -12,9 +12,21 @@ local schedules_plugin_mod = require("@self/schedules_plugin")
 
 --[=[
     Collection of utilities for the jecs_kernel framework and Roblox.
+
+    Contains:
+    - Default schedules and SchedulesPlugin for their setup.
+    - Default app runner for the schedules.
+
+    Refer to [/examples/quickstart.luau](./examples/quickstart.luau) for a practical example.
 ]=]
 local mod = {}
 
+--[=[
+    Default app runner.
+    This runner runs only the default schedules.
+
+    Refer to [/examples/quickstart.luau](./examples/quickstart.luau) for a practical example.
+]=]
 local function default_app_runner(app: krnl.App): (boolean, string)
 	schedules_mod.startup_pipeline[1]:run(app.world)
 	schedules_mod.startup_pipeline[2]:run(app.world)

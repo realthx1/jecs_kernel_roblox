@@ -7,8 +7,10 @@ local mod = {}
 --[=[
     A plugin group which contains all default plugins for Roblox.
 
-    Ordered list of added plugins:
-    * SchedulesPlugin
+    Ordered list of plugins:
+    1. SchedulesPlugin
+
+    Refer to [/examples/quickstart.luau](./examples/quickstart.luau) for a practical example.
 ]=]
 local default_plugins = krnl.new_plugin_group("DefaultPlugins"):add(schedules_plugin_mod.schedules_plugin)
 

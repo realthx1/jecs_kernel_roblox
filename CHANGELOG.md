@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.0] - 2026-04-18
 
+### Added
+- Added examples.
+
 ### Changed
-- Bumped jecs_kernel version to 0.3.0. Ensure that your project bumps the version too.
+- Bumped jecs_kernel version to 0.3.0. Ensure that your project is ready.
+- Improved code documentation.
 
 ## [0.2.3] - 2026-04-13
 

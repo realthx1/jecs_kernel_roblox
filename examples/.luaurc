@@ -1,0 +1,12 @@
+{
+  "languageMode": "strict",
+  "lint": {
+    "*": true
+  },
+  "lintErrors": false,
+  "typeErrors": true,
+  "aliases": {
+    "krnl_roblox": "../src",
+    "pkg": "../roblox_packages"
+  }
+}

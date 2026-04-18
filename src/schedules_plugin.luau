@@ -4,8 +4,12 @@ local schedules_mod = require("./schedules")
 
 local mod = {}
 
---- A plugin which registers all default schedules.
---- It should be added before all other plugins and systems!
+--[=[
+    A plugin which registers all default schedules.
+    It should be added before all other plugins and systems!
+
+    Refer to [/examples/quickstart.luau](./examples/quickstart.luau) for a practical example.
+]=]
 local schedules_plugin = krnl.new_plugin("SchedulesPlugin", function(_, app: krnl.App)
 	for _, schedule in schedules_mod.startup_pipeline do
 		app:add_schedule(schedule)
