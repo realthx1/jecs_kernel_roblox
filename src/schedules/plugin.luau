@@ -1,4 +1,4 @@
-local krnl = require("../roblox_packages/jecs_kernel")
+local krnl = require("../../roblox_packages/jecs_kernel")
 
 local schedules_mod = require("./schedules")
 
@@ -26,6 +26,6 @@ local schedules_plugin = krnl.new_plugin("SchedulesPlugin", function(_, app: krn
 	app:add_schedule(schedules_mod.pre_simulation_schedule)
 end, nil)
 
-mod.schedules_plugin = schedules_plugin
+mod.SchedulesPlugin = schedules_plugin
 
 return mod

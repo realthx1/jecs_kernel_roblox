@@ -1,3 +1,7 @@
+--[[
+    This is a simple example which showcases how jecs_kernel_roblox is used in general.
+]]
+
 local krnl = require("@pkg/jecs_kernel")
 local jecs = require("@pkg/jecs")
 local krnl_roblox = require("@krnl_roblox")

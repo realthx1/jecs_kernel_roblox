@@ -31,7 +31,7 @@
           },
           "diagnostics": {
             "includeDependents": true,
-            "workspace": false,
+            "workspace": true,
             "strictDatamodelTypes": true,
           },
           "completion": {

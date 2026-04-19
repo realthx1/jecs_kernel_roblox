@@ -23,5 +23,7 @@ local function fixed_timestep(dt: number, frame: number, accumulator: number): (
 end
 
 mod.fixed_timestep = fixed_timestep
+mod.FIXED_DELTA = FIXED_DELTA
+mod.MAX_DELTA = MAX_DELTA
 
 return mod

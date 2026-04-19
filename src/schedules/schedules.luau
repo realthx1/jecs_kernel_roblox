@@ -1,4 +1,4 @@
-local krnl = require("../roblox_packages/jecs_kernel")
+local krnl = require("../../roblox_packages/jecs_kernel")
 
 local mod = {}
 
