@@ -6,7 +6,7 @@ local schedules_mod = require("@self/schedules/schedules")
 local schedules_plugin_mod = require("@self/schedules/plugin")
 local time_plugin_mod = require("@self/time/plugin")
 local time_params_mod = require("@self/time/params")
-local time_resources_mod = require("@self/time/params")
+local time_resources_mod = require("@self/time/resources")
 local default_app_runner = require("@self/runner")
 
 --[=[
