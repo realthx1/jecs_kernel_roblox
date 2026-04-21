@@ -9,14 +9,12 @@ local krnl_roblox = require("@krnl_roblox")
 local luau_time = require("@pkg/luau_time")
 
 local schedules = krnl_roblox.schedules
-local std_rcs = krnl.std.run_conditions
-local std_params = krnl.std.system_params
 
 local human_tag = jecs.tag()
 local Position = jecs.component<<vector>>()
 local Velocity = jecs.component<<vector>>()
 
-local human_add_sys = krnl.sys("human_add", std_params.World)(function(world: jecs.World)
+local human_add_sys = krnl.sys("human_add", krnl.std_params.World)(function(world: jecs.World)
 	for i = 1, 10 do
 		local human_ent = world:entity()
 		world:add(human_ent, human_tag)
@@ -35,7 +33,7 @@ end)
 
 local human_move_sys = krnl.sys(
 	"human_move",
-	std_params.World,
+	krnl.std_params.World,
 	krnl.std_params.Res(krnl_roblox.time.FixedTime) -- time can be acquired using SystemParams `FixedTime` and `RealTime`
 	-- FixedTime should be used in systems that will run in fixed schedules
 )(function(world: jecs.World, time: luau_time.Time)
@@ -45,7 +43,7 @@ local human_move_sys = krnl.sys(
 	end
 end)
 
-local human_out_of_bounds_sys = krnl.sys("human_out_of_bounds", std_params.World)(function(world: jecs.World)
+local human_out_of_bounds_sys = krnl.sys("human_out_of_bounds", krnl.std_params.World)(function(world: jecs.World)
 	for human_ent, position_vec in world:query(Position):with(human_tag) do
 		if vector.magnitude(position_vec) > 1000 then
 			print(human_ent, "is out of bounds, deleting")
@@ -67,7 +65,7 @@ krnl
 	:add_systems(schedules.Startup.Startup, { human_add_sys })
 	:add_systems(schedules.FixedMain.FixedUpdate, { human_move_sys })
 	:add_systems(schedules.Main.Update, {
-		time_print_sys:run_if({ std_rcs.interval(1) }),
-		human_out_of_bounds_sys:run_if({ std_rcs.interval(1) }),
+		time_print_sys:run_if({ krnl.std_conditions.interval(1) }),
+		human_out_of_bounds_sys:run_if({ krnl.std_conditions.interval(1) }),
 	})
 	:run(krnl_roblox.app_runner) -- the default runner runs all default schedules

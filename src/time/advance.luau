@@ -19,7 +19,7 @@ local function advance_fixed_time(world: jecs.World, delta: number)
 	world:set(resources.FixedTime, resources.FixedTime, old_time)
 end
 
-local advance_time_sys = krnl.sys("advance_time_sys", krnl.std.system_params.World)(function(world: jecs.World)
+local advance_time_sys = krnl.sys("advance_time_sys", krnl.std_params.World)(function(world: jecs.World)
 	local old_real_time = world:get(resources.RealTime, resources.RealTime)
 	local old_sync_time = world:get(resources.SyncTime, resources.SyncTime)
 	assert(

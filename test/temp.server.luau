@@ -8,7 +8,7 @@ local sys = krnl.sys
 local human_tag = jecs.tag()
 local health_component = jecs.component<<number>>()
 
-local human_add_sys = sys("Human Add", krnl.std.system_params.World)(function(world: jecs.World)
+local human_add_sys = sys("Human Add", krnl.std_params.World)(function(world: jecs.World)
 	for i = 1, 10 do
 		local human_ent = world:entity()
 		world:add(human_ent, human_tag)
@@ -16,13 +16,13 @@ local human_add_sys = sys("Human Add", krnl.std.system_params.World)(function(wo
 	end
 end)
 
-local human_damage_sys = sys("Human Damage", krnl.std.system_params.World)(function(world: jecs.World)
+local human_damage_sys = sys("Human Damage", krnl.std_params.World)(function(world: jecs.World)
 	for human_ent, health in world:query(health_component):with(human_tag) do
 		world:set(human_ent, health_component, math.max(0, health - 2))
 	end
 end)
 
-local human_death_sys = sys("Human Death", krnl.std.system_params.World)(function(world: jecs.World)
+local human_death_sys = sys("Human Death", krnl.std_params.World)(function(world: jecs.World)
 	for human_ent, health in world:query(health_component):with(human_tag) do
 		if health == 0 then
 			print("Human", human_ent, "died!")

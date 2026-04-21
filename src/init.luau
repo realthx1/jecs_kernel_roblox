@@ -4,6 +4,7 @@
 local default_plugins_mod = require("@self/default_plugins")
 local schedules_mod = require("@self/schedules/schedules")
 local time_prelude = require("@self/time/prelude")
+local channel_prelude = require("@self/channels")
 local default_app_runner = require("@self/runner")
 
 --[=[
@@ -22,5 +23,6 @@ prelude.app_runner = default_app_runner
 prelude.DefaultPlugins = default_plugins_mod.default_plugins
 prelude.schedules = schedules_mod.schedule_map
 prelude.time = time_prelude
+prelude.channel = channel_prelude
 
 return prelude

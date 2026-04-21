@@ -129,17 +129,31 @@ pathfs = [{ name = "jiwonz/pathfs", version = "^0.6.0", index = "https://github.
 result = [{ name = "lukadev_0/result", version = "^1.2.1", index = "https://github.com/pesde-pkg/index" }, "peer"]
 unzip = [{ name = "0x5eal/unzip", version = "^0.2.0", index = "https://github.com/pesde-pkg/index", target = "luau" }, "standard"]
 
-[graph."realthx1/jecs_kernel@0.5.0 roblox"]
-direct = ["jecs_kernel", { name = "realthx1/jecs_kernel", version = "~0.5.0", index = "default" }, "standard"]
+[graph."realthx1/channels@0.1.0 roblox"]
+direct = ["channels", { name = "realthx1/channels", version = "~0.1.0", index = "default" }, "standard"]
 
-[graph."realthx1/jecs_kernel@0.5.0 roblox".dependencies]
-jecs = ["wally#ukendio/jecs@0.11.0 roblox", "standard"]
-
-[graph."realthx1/jecs_kernel@0.5.0 roblox".pkg_ref]
+[graph."realthx1/channels@0.1.0 roblox".pkg_ref]
 ref_ty = "pesde"
 index_url = "https://github.com/pesde-pkg/index"
 
-[graph."realthx1/jecs_kernel@0.5.0 roblox".pkg_ref.dependencies]
+[graph."realthx1/channels@0.1.0 roblox".pkg_ref.dependencies]
+luau_lsp = [{ name = "pesde/luau_lsp", version = "^1.63.0", index = "https://github.com/pesde-pkg/index", target = "lune" }, "dev"]
+rojo = [{ name = "pesde/rojo", version = "^7.5.1", index = "https://github.com/pesde-pkg/index", target = "lune" }, "dev"]
+scripts = [{ name = "pesde/scripts_rojo", version = "^0.2.0", index = "https://github.com/pesde-pkg/index", target = "lune" }, "dev"]
+selene = [{ name = "pesde/selene", version = "^0.30.1", index = "https://github.com/pesde-pkg/index", target = "lune" }, "dev"]
+stylua = [{ name = "pesde/stylua", version = "^2.3.1", index = "https://github.com/pesde-pkg/index", target = "lune" }, "dev"]
+
+[graph."realthx1/jecs_kernel@0.5.1 roblox"]
+direct = ["jecs_kernel", { name = "realthx1/jecs_kernel", version = "~0.5.0", index = "default" }, "standard"]
+
+[graph."realthx1/jecs_kernel@0.5.1 roblox".dependencies]
+jecs = ["wally#ukendio/jecs@0.11.0 roblox", "standard"]
+
+[graph."realthx1/jecs_kernel@0.5.1 roblox".pkg_ref]
+ref_ty = "pesde"
+index_url = "https://github.com/pesde-pkg/index"
+
+[graph."realthx1/jecs_kernel@0.5.1 roblox".pkg_ref.dependencies]
 jecs = [{ wally = "wally#ukendio/jecs", version = "~0.11.0", index = "https://github.com/UpliftGames/wally-index" }, "standard"]
 rojo = [{ name = "pesde/rojo", version = "^7.5.1", index = "https://github.com/pesde-pkg/index", target = "lune" }, "dev"]
 scripts = [{ name = "pesde/scripts_rojo", version = "^0.2.0", index = "https://github.com/pesde-pkg/index", target = "lune" }, "dev"]

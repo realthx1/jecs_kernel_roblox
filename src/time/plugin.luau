@@ -10,7 +10,7 @@ local mod = {}
     A plugin which sets up time resources and advances them.
     It should be added before all other plugins and systems!
 
-    Refer to [/examples/quickstart.luau](./examples/time_plugin.luau) for a practical example.
+    Refer to [/examples/time.luau](./examples/time.luau) for a practical example.
 ]=]
 local time_plugin = krnl.new_plugin("TimePlugin", function(_, app: krnl.App)
 	app:add_system(schedules.Main.First, advance.advance_time_sys)

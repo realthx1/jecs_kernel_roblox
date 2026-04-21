@@ -17,44 +17,46 @@ pesde add realthx1/channels -t roblox
 
 ## Usage
 
-* [/examples/quickstart.luau](./examples/quickstart.luau) - simple example which showcases the essentials.
-* Public API - Use a language server to see doc comments. All public code is documented.
+- [/examples/quickstart.luau](./examples/quickstart.luau) - simple example which showcases the essentials.
+- Public API - Use a language server to see doc comments. All public code is documented.
 
 > For jecs_kernel's usage, refer to its own examples and code documentation.
 
 ## Contents
 
-* Default schedules and SchedulesPlugin for their setup.
-* Default app runner for the schedules.
+- Default schedules and SchedulesPlugin for their setup.
+- Default app runner for the schedules.
+- TimePlugin and RealTime, FixedTime and SyncTime resources for tracking different elapsed time.
+- ChannelPlugin and a Channel component for updating channels from `realthx1/channels`.
 
 ### Schedule Order
 
 Startup schedules are ran once at app run.
 
-* PreStartup
-* Startup
-* PostStartup
+- PreStartup
+- Startup
+- PostStartup
 
 Update schedules are ran at every RunService heartbeat.
 
-* First
-* PreUpdate
-* Update
-* PostUpdate
-* Last
+- First
+- PreUpdate
+- Update
+- PostUpdate
+- Last
 
 Additionally, between the PreUpdate and Update schedule a set of fixed timestep schedules are ran 0 or more times.
 
-* FixedFirst
-* FixedPreUpdate
-* FixedUpdate
-* FixedPostUpdate
-* FixedLast
+- FixedFirst
+- FixedPreUpdate
+- FixedUpdate
+- FixedPostUpdate
+- FixedLast
 
 Each RunService event has its own schedule. Heartbeat event schedule is an alias to the Update schedule.
 
-* PreAnimation
-* PreSimulation
-* PostSimulation
-* Heartbeat
-* PreRender (only runs on client)
+- PreAnimation
+- PreSimulation
+- PostSimulation
+- Heartbeat
+- PreRender (only runs on client)

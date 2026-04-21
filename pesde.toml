@@ -21,6 +21,7 @@ default = "https://github.com/UpliftGames/wally-index"
 jecs = { wally = "ukendio/jecs", version = "~0.11.0" }
 jecs_kernel = { name = "realthx1/jecs_kernel", version = "~0.5.0" }
 luau_time = { name = "realthx1/luau_time", version = "~0.2.0" }
+channels = { name = "realthx1/channels", version = "~0.1.0" }
 
 [scripts]
 analyze = ".lune/analyze.luau"

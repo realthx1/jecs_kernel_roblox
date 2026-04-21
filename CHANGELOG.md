@@ -9,12 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- ChannelPlugin which is responsible for updating marked Channels from the `realthx1/channels` package.
 - SyncTime resource. It follows the `GetServerTimeNow()` time.
 - Time resource names.
 
 ### Changed
 
 - Changed exports. This is not backwards compatible.
+- Bumped jecs_kernel to 0.5.*.
 
 ## [0.4.1] - 2026-04-20
 
