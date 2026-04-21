@@ -11,7 +11,6 @@ local luau_time = require("@pkg/luau_time")
 local schedules = krnl_roblox.schedules
 local std_rcs = krnl.std.run_conditions
 local std_params = krnl.std.system_params
-local time_params = krnl_roblox.params.time
 
 local human_tag = jecs.tag()
 local Position = jecs.component<<vector>>()
@@ -37,7 +36,7 @@ end)
 local human_move_sys = krnl.sys(
 	"human_move",
 	std_params.World,
-	time_params.FixedTime -- time can be acquired using SystemParams `FixedTime` and `RealTime`
+	krnl.std_params.Res(krnl_roblox.time.FixedTime) -- time can be acquired using SystemParams `FixedTime` and `RealTime`
 	-- FixedTime should be used in systems that will run in fixed schedules
 )(function(world: jecs.World, time: luau_time.Time)
 	local delta = time:delta() -- delta in FixedTime is always 64hz
@@ -57,7 +56,7 @@ end)
 
 local time_print_sys = krnl.sys(
 	"time_print",
-	time_params.RealTime -- `RealTime` follows `os.clock()` time
+	krnl.std_params.Res(krnl_roblox.time.RealTime) -- `RealTime` follows `os.clock()` time
 )(function(time: luau_time.Time)
 	print((time:elapsed() // 1) .. " seconds")
 end)
@@ -71,4 +70,4 @@ krnl
 		time_print_sys:run_if({ std_rcs.interval(1) }),
 		human_out_of_bounds_sys:run_if({ std_rcs.interval(1) }),
 	})
-	:run(krnl_roblox.runner) -- the default runner runs all default schedules
+	:run(krnl_roblox.app_runner) -- the default runner runs all default schedules

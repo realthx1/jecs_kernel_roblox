@@ -3,3 +3,15 @@
 "github:Kampfkarren/selene" = "latest"
 "github:rojo-rbx/rojo" = "latest"
 stylua = "latest"
+
+[tasks.sourcemap]
+run = "mise exec -- rojo sourcemap --output sourcemap.json test.project.json"
+
+[tasks.test-build]
+run = "mise exec -- rojo build --output test.rbxl test.project.json"
+
+[tasks.update]
+run = "pesde update"
+
+[tasks.sync]
+run = "mise exec -- rojo serve test.project.json"

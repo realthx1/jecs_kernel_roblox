@@ -12,7 +12,12 @@ jecs.meta(FixedTime, FixedTime, luau_time.time.new())
 local RealTime = jecs.component<<luau_time.Time>>()
 jecs.meta(RealTime, RealTime, luau_time.time.from_seconds(os.clock()))
 
+--- A clock responsible for tracking time synced between the server and clients using `workspace:GetServerTimeNow()`.
+local SyncTime = jecs.component<<luau_time.Time>>()
+jecs.meta(SyncTime, SyncTime, luau_time.time.from_seconds(workspace:GetServerTimeNow()))
+
 mod.FixedTime = FixedTime
 mod.RealTime = RealTime
+mod.SyncTime = SyncTime
 
 return mod

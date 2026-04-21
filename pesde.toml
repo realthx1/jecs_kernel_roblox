@@ -1,6 +1,6 @@
 name = "realthx1/jecs_kernel_roblox"
-version = "0.4.1"
-description = "Collection of schedules and plugins for the jecs_kernel package and Roblox."
+version = "0.5.0"
+description = "A collection of utilities for the jecs_kernel package and Roblox."
 authors = ["realthx1"]
 repository = "https://github.com/realthx1/jecs_kernel_roblox"
 license = "MIT"
@@ -19,7 +19,7 @@ default = "https://github.com/UpliftGames/wally-index"
 
 [dependencies]
 jecs = { wally = "ukendio/jecs", version = "~0.11.0" }
-jecs_kernel = { name = "realthx1/jecs_kernel", version = "~0.4.0" }
+jecs_kernel = { name = "realthx1/jecs_kernel", version = "~0.5.0" }
 luau_time = { name = "realthx1/luau_time", version = "~0.2.0" }
 
 [scripts]

@@ -34,7 +34,7 @@ end)
 local human_move_sys = krnl.sys(
 	"human_move",
 	krnl.std.system_params.World,
-	krnl_roblox.params.time.FixedTime -- time be acquired using SystemParams `FixedTime` and `RealTime`
+	krnl.std_params.Res(krnl_roblox.time.FixedTime) -- time be acquired using SystemParams `FixedTime` and `RealTime`
 	-- FixedTime should be used in systems that will run in fixed schedules
 )(function(world: jecs.World, time: luau_time.Time)
 	local delta = time:delta() -- delta in FixedTime is always 64hz
@@ -56,7 +56,7 @@ local human_out_of_bounds_sys = krnl.sys("human_out_of_bounds", krnl.std.system_
 
 local time_print_sys = krnl.sys(
 	"time_print",
-	krnl_roblox.params.time.RealTime -- `RealTime` follows `os.clock()` time
+	krnl.std_params.Res(krnl_roblox.time.RealTime) -- `RealTime` follows `os.clock()` time
 )(function(time: luau_time.Time)
 	print((time:elapsed() // 1) .. " seconds")
 end)
@@ -70,4 +70,4 @@ krnl
 		time_print_sys:run_if({ krnl.std.run_conditions.interval(1) }),
 		human_out_of_bounds_sys:run_if({ krnl.std.run_conditions.interval(1) }),
 	})
-	:run(krnl_roblox.runner) -- the default runner runs all default schedules
+	:run(krnl_roblox.app_runner) -- the default runner runs all default schedules

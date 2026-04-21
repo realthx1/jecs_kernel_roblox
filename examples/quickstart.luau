@@ -40,4 +40,4 @@ krnl
 	:add_systems(schedules.Startup.Startup, { human_add_sys })
 	:add_systems(schedules.FixedMain.FixedUpdate, { human_damage_sys })
 	:add_systems(schedules.Main.PostUpdate, { human_death_sys })
-	:run(krnl_roblox.runner) -- the default runner runs all default schedules
+	:run(krnl_roblox.app_runner) -- the default runner runs all default schedules

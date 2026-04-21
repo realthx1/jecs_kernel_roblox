@@ -13,7 +13,7 @@ local mod = {}
     Refer to [/examples/quickstart.luau](./examples/time_plugin.luau) for a practical example.
 ]=]
 local time_plugin = krnl.new_plugin("TimePlugin", function(_, app: krnl.App)
-	app:add_system(schedules.Main.First, advance.advance_real_time_sys)
+	app:add_system(schedules.Main.First, advance.advance_time_sys)
 end, nil)
 
 mod.TimePlugin = time_plugin
