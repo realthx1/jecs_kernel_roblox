@@ -12,7 +12,7 @@
 Using [**pesde**](https://pesde.dev/):
 
 ```bash
-pesde add realthx1/channels -t roblox
+pesde add realthx1/jecs_kernel_roblox -t roblox
 ```
 
 ## Usage
